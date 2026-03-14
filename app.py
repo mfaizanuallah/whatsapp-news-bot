@@ -6,13 +6,13 @@ app = Flask(__name__)
 # CONFIG (From Environment Variables)
 ACCESS_TOKEN = os.environ.get("ACCESS_TOKEN")
 PHONE_ID = os.environ.get("PHONE_ID")
-VERIFY_TOKEN = "mongol_secret_123" # You will enter this in Meta dashboard
+VERIFY_TOKEN = "EAF0NF779rTMBQxjgVnXzUjFnWuRDVuzUw0TkbZBmYxP7NcqTMlvl0CDa7vPnAoREg7cILZAIxG31ZCPeWOrOhtR3jJ0i7WB3C1pCbclb6AGUIfZCpvp2ebNw8JBBO1zzlEP7ixM3hr7ZCEsZCSqmDLFNKsZAcbQjYeZCCjwyBfg8StjzZB0jpQbGcybXkfNtCF6Yb0mWAnPBKqW7OtxItR9txRcQfn87oPsxeLIppMvZCRodfnWKZACp5yVpJkqahdy1WTrw6XqVAm5BNUCncZAnCAJPsdyotPPYBUBZCWZB8ZD" # You will enter this in Meta dashboard
 
 def get_pakistan_news():
     # Using a free news source (Placeholder logic)
     # You can get a free key from newsdata.io
     api_key = os.environ.get("NEWS_API_KEY")
-    url = f"https://newsdata.io/api/1/news?apikey={api_key}&country=pk&language=en"
+    url = f"https://newsdata.io/api/1/news?apikey={pub_5e617ce165b44f04ad98f9c1c1bffddd}&country=pk&language=en"
     try:
         r = requests.get(url).json()
         articles = r.get('results', [])[:3]
