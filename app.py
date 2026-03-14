@@ -17,7 +17,19 @@ def get_pakistan_news():
         articles = r.get('results', [])[:3]
         if not articles:
             return "No news found at the moment."
-        return "\n\n".join([f"*{a['title']}*\n{a['link']}" for a in articles])
+        
+        news_list = []
+        for a in articles:
+            title = a.get('title', 'No Title')
+            # Get description, truncate it if it's too long for WhatsApp (max 4096 chars total)
+            desc = a.get('description', 'No details available.')
+            if desc and len(desc) > 200:
+                desc = desc[:197] + "..."
+            link = a.get('link', '')
+            
+            news_list.append(f"📌 *{title}*\n📝 {desc}\n🔗 {link}")
+            
+        return "\n\n---\n\n".join(news_list)
     except Exception as e:
         print(f"News Error: {e}")
         return "Could not fetch news right now. Try again later."
