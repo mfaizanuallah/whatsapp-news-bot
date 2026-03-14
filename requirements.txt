@@ -1,10 +1,4 @@
 flask
 requests
 gunicorn
-from newspaper import Article
-
-def get_full_details(url):
-    article = Article(url)
-    article.download()
-    article.parse()
-    return article.text[:500] + "..." # Get the first 500 characters
+newspaper
