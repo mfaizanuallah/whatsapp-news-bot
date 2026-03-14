@@ -1,6 +1,8 @@
 import os, requests
 from flask import Flask, request, jsonify
 
+from newspaper import Article
+
 app = Flask(__name__)
 
 # CONFIG - We are hardcoding these for now to ensure it works. 
@@ -10,6 +12,12 @@ PHONE_ID = "1050947264767706"
 VERIFY_TOKEN = "mongol_secret_123"
 NEWS_API_KEY = "pub_5e617ce165b44f04ad98f9c1c1bffddd"
 
+def get_full_details(url):
+    article = Article(url)
+    article.download()
+    article.parse()
+    return article.text[:500] + "..." # Get the first 500 characters
+    
 def get_pakistan_news():
     url = f"https://newsdata.io/api/1/news?apikey={NEWS_API_KEY}&country=pk&language=en"
     try:
